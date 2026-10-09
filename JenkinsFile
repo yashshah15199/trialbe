@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/yashshah15199/trialbe.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'python -m pip install -r requirements.txt'
+            }
+        }
+        
+     stage('Deploy to Render') {
+           steps {
+            bat 'echo Deploying to Render...'
+            bat 'curl -X POST "https://api.render.com/deploy/srv-db1heedg1s2s73a6qjcg?key=TJ1Uy_qL61U"'
+     }}
+}
+    }
